@@ -179,6 +179,11 @@ var names = users.map(({ user: fuckname }) => fuckname);
 // OR users.map(({user}) => user);
 console.log(names);
 
+const a = {};
+const b = a;
+b.name = "li";
+console.log(b, a); // => {name: 'hi'} {name: 'hi'}
+
 /* EXERCISES */
 const { me, she, c } = {
   me: 201,

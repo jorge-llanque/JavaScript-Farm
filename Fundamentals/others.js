@@ -1,3 +1,41 @@
+/** There are two ways in which values are converted to other types
+ * in JavaScript.
+ * Explicit Conversion and Coercion
+ */
+// Explicit conversion
+const val = Boolean(0);
+console.log(val); // => false
+const val2 = Boolean(-1);
+console.log(val2); // => true
+const val3 = Boolean(1);
+console.log(val3); // => true
+const val4 = Boolean([].length);
+console.log(val4); // => false
+// Coercion
+const multiply = "2" * "3";
+console.log(multiply, typeof multiply); // => 6 number
+const sum = "2" + 1;
+console.log(sum); // => 21
+const sum2 = 1 + "2";
+console.log(sum2); // => 12
+const sum3 = "1" - "2";
+console.log(sum3); // => -1
+
+/** WHAT'S THE TYPE OF A VALUE
+ * typeof is for primitive values
+ * instanceof is for objects
+ */
+console.log(typeof "hi"); // => string
+console.log(typeof undefined); // => undefined
+console.log(typeof null); // => object  (unfortunately is a bug of js, TC39 tried to resolved, but not)
+console.log(typeof true); // => boolean
+console.log(typeof 23); // => number
+console.log(typeof function () {}); // => function
+
+console.log(function () {} instanceof Function); // true
+console.log({} instanceof Object); // true
+console.log([] instanceof Array); // true (Equal to Object)
+
 /*----------------------------- ALERTS & PROPS -----------------------------------*/
 /*--------------------------------------------------------------------------------*/
 
