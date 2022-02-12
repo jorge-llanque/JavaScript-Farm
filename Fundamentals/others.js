@@ -73,3 +73,41 @@ console.warn("For Of");
 for (let heroe of heroes) {
   console.log(heroe);
 }
+
+/* // Eventos onclick
+document.querySelector('html').onclick = () => alert('ouch, deja de pincharme') */
+
+/* ---------------------------------------------------------------------------------- */
+
+/* // Cambiador de imagen
+const myImage = document.querySelector('img');
+
+myImage.onclick = function() {
+    const miSrc = myImage.getAttribute('src'); 
+    (miSrc === 'images/perro-1.jpg') ? myImage.setAttribute('src','images/perro-2.jpg') 
+                                     : myImage.setAttribute('src','images/perro-1.jpg');
+} */
+
+/* -------------------------------------------------------------------------------------- */
+
+/* // Mensaje de bienvenida personalizado
+const miBoton = document.querySelector('button');
+const miTitulo = document.querySelector('h1');
+
+function estableceNombreUsuario () {
+    let miNombre = prompt('Por favor, ingresa tu nombre.');
+    localStorage.setItem('nombre', miNombre);
+    miTitulo.textContent = 'Mozilla es fresco,' + miNombre;
+}
+
+if(!localStorage.getItem('nombre')){
+    estableceNombreUsuario();
+}else {
+    let nombreAlmacenado = localStorage.getItem('nombre');
+    miTitulo.textContent = 'Mozilla es fresco,' + nombreAlmacenado;
+}
+
+miBoton.onclick = function(){
+    estableceNombreUsuario();
+} */
+/* -------------------------------------------------------------------------------------- */
