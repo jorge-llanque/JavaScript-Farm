@@ -196,3 +196,33 @@ const { me, she, c } = {
 };
 console.log(she);
 console.log(c(me, she));
+
+// Counting nesting objects
+
+var person = {
+  name: "Ram",
+  age: 27,
+  children: ["as", "we"],
+  vehicles: {
+    car: "limousine",
+    bike: "ktm-duke",
+    airlines: {
+      lufthansa: "Air123",
+      Brithis_Airways: "Brt707",
+      year: ["2021", "2022"],
+    },
+  },
+};
+
+let count = 0;
+function nestedObjects(person) {
+  for (let obj of Object.keys(person)) {
+    if (typeof person[obj] === "object") {
+      count++;
+      nestedObjects(person[obj]);
+    }
+  }
+  return count;
+}
+
+console.log(nestedObjects(person));
