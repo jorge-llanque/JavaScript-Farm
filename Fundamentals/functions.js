@@ -14,5 +14,3 @@ const constructArr = function () {
   return arr.join(" ");
 };
 constructArr("was", "it", "in");
-
-// Escribir todos las reglas de scopes
