@@ -71,3 +71,60 @@ str += "<b>";
 str += "Hello!";
 str += "</b>";
 console.log(str); // => <b>Hello!</b>
+
+const padNumber = "8".padStart(3, "0");
+console.log(padNumber); // => 008
+
+const padWord = "yes".padEnd(6, "!");
+console.log(padWord); // => yes!!!
+
+/**
+ * One of the best way to concatenates is  using
+ * assignment operator += because internaly JS Engine
+ * optimize it.
+ */
+let str = "";
+str += "Say it";
+str += "one more";
+str += " time";
+console.log(str); // => Say it one more time
+
+/**
+ * These are three ways of converting a value to string
+ * RECOMMENDATION (use String())
+ */
+String(x);
+"" + x;
+x.toString(); // => does not work for undefined  and null
+
+/**
+ * Stringifying objects
+ */
+String({ a: 1 });
+// => '[object Object]'
+
+String(["a", "b"]);
+// => 'a,b'
+
+String(["a", ["b"]]);
+// => 'a,b'
+
+/**
+ * Stringifying functions
+ */
+String(function f() {
+  return 4;
+});
+// => 'function f(){return 4}'
+
+/**
+ * An alternate way of stringifying values
+ * The JSON data format is a text representation of js values.
+ * Therefore, JSON.stringify() can also be used to convert values to strings.
+ */
+JSON.stringify({ a: 1 });
+// => '{"a":1}'
+JSON.stringify(["a", ["b"]]);
+// => '["a",["b"]]'
+
+console.log(JSON.stringify({ first: "Jane", last: "Doe" }, null, 2));

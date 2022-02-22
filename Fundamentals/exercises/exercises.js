@@ -48,3 +48,20 @@ cart.forEach((elem, idx) => {
 });
 
 console.log(newCart);
+
+const CONTRACTOR = "provider-management.contractor";
+const PARTNER_MANAGER = "provider-management.partner-manager";
+
+const roles = ["provider-management.contractor"];
+
+const consultantTypes = [
+  { id: 1, name: "CONTRACT" },
+  { id: 2, name: "PARTNER" },
+];
+
+const result =
+  consultantTypes.find((x) =>
+    roles.some((y) => y.includes(x.name.toLowerCase()))
+  )?.id ?? "no hay";
+
+console.log(result);

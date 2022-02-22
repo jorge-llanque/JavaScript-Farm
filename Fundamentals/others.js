@@ -149,3 +149,58 @@ miBoton.onclick = function(){
     estableceNombreUsuario();
 } */
 /* -------------------------------------------------------------------------------------- */
+/**
+ * Throwing and catching exceptions
+ * Let´s examine what happens in line B: an error occurred, but the best place to
+ * handle the problem is nto the current location, it's line A. There, we can skip
+ * the current file and move on to the next one.
+ */
+function readProfiles(filePaths) {
+  const profiles = [];
+  for (const filePath of filePaths) {
+    try {
+      const profile = readOneProfile(filePath);
+      profiles.push(profile);
+    } catch (err) {
+      // A
+      console.log("Error in: " + filePath, err);
+    }
+  }
+}
+
+function readOneProfile(filePath) {
+  const profile = new Profile();
+  const file = openFile(filePath);
+  //...(Read the data in `file` int `profile`)
+  return profile;
+}
+
+function openFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error("Could not find file" + filePath); // B
+  }
+  // ...(Open the file whose path is `filePath`)
+}
+
+/**
+ * Error has the following subclasses.
+ * AgregateError: represents multiple errors at once. In the standard library,
+ * only Promise.any() uses it.
+ * RangeError: indicates a value that is not in the set or range of allowable values.
+ * ReferenceError: indicates that an invalid reference value has been detected.
+ * SyntaxError: indicates that a parsing error has occurred.
+ * TypeError: is used to indicate an unsuccessful operation when none of the other
+ * nativeerror objects are an appropriate indication of the failure cause.
+ * URIError: indicates that one of the global URI handling functions was used
+ * in a way that is incompatible with its definition.
+ * @see https://github.com/tc39/proposal-error-cause
+ */
+
+const obj = {
+  s: 023,
+  df: "3",
+  myMethod() {
+    return "abc";
+  },
+};
+console.log(obj.myMethod());

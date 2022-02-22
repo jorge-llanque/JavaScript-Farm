@@ -182,3 +182,15 @@ console.log(spreadOperatorArr); // => [1, 'ass', false, {}]
 
 const arr = [null, null, {}];
 console.log(arr.some((x) => x)); // => true
+
+/**
+ * THIS
+ * For anonymous inline function expressions, arrow functions are clear winners,
+ * due to their compact syntaxt and them not having <this> as an implicit parameter.
+ *
+ * For stand-alone named function declarations, arrow functions still benefit from
+ * lexical <this>. But function declarations (which produce ordinary functions) have
+ * nice syntax and early activation is also occasionally useful. If <this> doesn't
+ * appear in the body of an ordinary function, there is no downside to using it as a
+ * real function.
+ */
