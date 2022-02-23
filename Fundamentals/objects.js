@@ -226,3 +226,34 @@ function nestedObjects(person) {
 }
 
 console.log(nestedObjects(person));
+
+/**
+ * Reserved words are allowed in objects
+ */
+
+const obj = {
+  if: 234,
+  const: "hi",
+};
+
+/**
+ * It's very important to know that an object copied, is individual only the first level.
+ * If I change a property of an object nested I'm changing the property in the original copy.
+ * This is the common behavior. The solution is to use spreading
+ */
+
+/**
+ * Methods
+ * Methods are functions and functions have methods themselves. One of those methods is .call()
+ * .call() makes the normally implicit paramter this explicit: When invoking a function via .call(),
+ * the first parameter is this, followed by the regular (explicit) function parameters.
+ */
+obj.someMethod.call(obj, "a", "b");
+
+/**
+ * Methods
+ * We use .bind() to turn method into the stand-alone function func()
+ * Each invocation of .bind() creates a new function. That's why we need to store the result
+ * somewhere if we want to remove it later on.
+ */
+obj.someMethod.bind(obj, "hello");
