@@ -189,11 +189,12 @@ const myAlert = () => {
 myAlert();
 
 // We're gonna to create a closure for each function invoke
-const myAlert2 = () => {
+const myAlert = () => {
   const x = "Help! I think I found a clue";
   let count = 0;
   const alerter = () => {
-    alert(`${x} ${++count}`);
+    //alert(`${x} ${++count}`);
+    console.log(`${x} ${++count}`);
   };
   return alerter;
 };

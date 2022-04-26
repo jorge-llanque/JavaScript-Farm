@@ -7,7 +7,7 @@
 
 ## brackets notation
 
-- We use bracket notation when we can't use string properties
+- We use bracket notation when we can't use string properties.
 
 ## Destructuring array
 

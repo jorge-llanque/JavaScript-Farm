@@ -65,3 +65,15 @@ const result =
   )?.id ?? "no hay";
 
 console.log(result);
+
+/************** */
+const a = [1, 2];
+const b = [
+  { id: 1, name: "asd" },
+  { id: 2, name: "dkdkd" },
+  { id: 3, name: "vvv" },
+];
+
+let c = b.filter((data) => !a.includes(data.id));
+
+console.log(c);

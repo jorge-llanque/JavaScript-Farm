@@ -11,7 +11,7 @@ const products = [
 
 /******************************************************************************* */
 
-/*  Eliminar objetos con id duplicados  */
+/*  Eliminar objetos con id duplicados de un array de objetos  */
 const removePairIds = (array) => {
   const newArr = [];
   array.forEach((obj) => {
