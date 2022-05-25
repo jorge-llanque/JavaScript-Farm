@@ -423,3 +423,82 @@ console.log(pushItem("Ingenieria mecatronica"));
 //validacion de name duplicado sensible a mayusculas y minusculas
 //validacion de name duplicado sensible a espacios en blancos y caracteres especiales y diacríticos(tildes)
 //validacion de name duplicado sensible a carrera repetida ><<<<<<<<<<<<< No aplicado
+
+
+
+const template = {
+  quantity:2,
+  properties: [
+    { key: 'name', type: 'string', minWords: 1, maxWords:1 },
+    { key: 'profession', type: 'string', minWords: 1, maxWords:1 },
+    { key: 'age', type: 'number', containdecimal: false, minNumber: 10, maxNumber: 50 },
+    { key: 'dateOfBirth', type: 'date', format:'yyyy/mm/dd', minDate: '1900/01/01', maxDate: '2000/01/01'},
+    { key: 'genre', type: 'string', special: 'genre'},
+    { key: 'address', type: 'string', minWords: 3, maxWords:10},
+    { key: 'hasChildren', type: 'boolean'}
+  ]
+}
+const getRandomNumber = (max, min) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+const createAWord = () => {
+  let allWords = [
+    ['a', 'e', 'i', 'o', 'u'],
+    ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z']
+  ];
+
+  let result = [];
+  let randomLlimit = getRandomNumber(15,3);
+  let isOdd = randomLlimit % 2 === 0 ? true : false
+
+  let exchange, arr, position;
+
+  for(let i = 0; i < randomLlimit; i++){
+    if(result.length === 0){
+      exchange = isOdd;
+    }
+
+    arr = (exchange) ? allWords[0] : allWords[1];
+
+    position = getRandomNumber(arr.length - 1, 0)
+    result.push(arr[position]);
+    exchange = !exchange;
+  }
+
+  result = String(result).replace(',','');
+
+  return result;
+};
+
+
+const createStringElement = (minWords, maxWords) => {
+  let result = [];
+
+
+    for(let i = 0; i < maxWords; i++){
+      
+      result.push(createAWord());
+    }
+  result = String(result).replace(',', ' ')
+  return result;
+}
+
+const CreateSeed = (obj) => {
+  let result =[];
+  let seed = {};
+  for (let i = 0; i < obj.quantity; i++) {
+    obj.properties.forEach(x => {
+      if(x.type === 'string'){
+        word = createStringElement(x.minWords, x.maxWords)
+        seed[x.key] = word;
+      }
+    })
+    result.push(seed);
+  }
+  return result;
+}
+
+console.log(CreateSeed({properties:[
+  {type:'string', key:'name', minWords:1, maxWords:2},
+  {type:'string', key:'lastname', minWords:1, maxWords:4}], quantity:100}))
