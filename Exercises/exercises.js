@@ -429,7 +429,7 @@ console.log(pushItem("Ingenieria mecatronica"));
 const template = {
   quantity:2,
   properties: [
-    { key: 'name', type: 'string', minWords: 1, maxWords:1 },
+    { key: 'name', type: 'string', minWords: 1, maxWords:1, isCapitalized: true, everyWordIsCapitalized:true },
     { key: 'profession', type: 'string', minWords: 1, maxWords:1 },
     { key: 'age', type: 'number', containdecimal: false, minNumber: 10, maxNumber: 50 },
     { key: 'dateOfBirth', type: 'date', format:'yyyy/mm/dd', minDate: '1900/01/01', maxDate: '2000/01/01'},
@@ -438,8 +438,9 @@ const template = {
     { key: 'hasChildren', type: 'boolean'}
   ]
 }
+
 const getRandomNumber = (max, min) => {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.round(Math.random() * (max - min) + min)
 }
 
 const createAWord = () => {
@@ -448,12 +449,13 @@ const createAWord = () => {
     ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z']
   ];
 
-  let result = [];
+  let result = "";
   let randomLlimit = getRandomNumber(15,3);
   let isOdd = randomLlimit % 2 === 0 ? true : false
 
   let exchange, arr, position;
 
+  
   for(let i = 0; i < randomLlimit; i++){
     if(result.length === 0){
       exchange = isOdd;
@@ -462,43 +464,45 @@ const createAWord = () => {
     arr = (exchange) ? allWords[0] : allWords[1];
 
     position = getRandomNumber(arr.length - 1, 0)
-    result.push(arr[position]);
+    result += arr[position];
     exchange = !exchange;
   }
-
-  result = String(result).replace(',','');
-
   return result;
 };
 
 
-const createStringElement = (minWords, maxWords) => {
+const createStringElement = (minWords, maxWords, isCapitalized) => {
   let result = [];
+  let randomLimit = getRandomNumber(maxWords, minWords);
 
+  
+    for(let i = 0; i < randomLimit; i++){
+      let word = createAWord();
 
-    for(let i = 0; i < maxWords; i++){
-      
-      result.push(createAWord());
+      if(isCapitalized){
+        word = word.replace(word[0], word[0].toUpperCase());
+      }
+      result.push(word)
     }
-  result = String(result).replace(',', ' ')
-  return result;
+  return result.join(' ');
 }
 
-const CreateSeed = (obj) => {
-  let result =[];
-  let seed = {};
-  for (let i = 0; i < obj.quantity; i++) {
-    obj.properties.forEach(x => {
-      if(x.type === 'string'){
-        word = createStringElement(x.minWords, x.maxWords)
-        seed[x.key] = word;
+const CreateSeed = (template) => {
+  let boxData =[];
+  
+  for (let i = 0; i < template.quantity; i++) {
+    let seed = {};
+    template.properties.forEach(member => {
+      if(member.type === 'string'){
+        word = createStringElement(member.minWords, member.maxWords, member.everyWordIsCapitalized)
       }
+      seed[member.key] = word;
     })
-    result.push(seed);
+    boxData.push(seed);
   }
-  return result;
+  return boxData;
 }
 
 console.log(CreateSeed({properties:[
-  {type:'string', key:'name', minWords:1, maxWords:2},
-  {type:'string', key:'lastname', minWords:1, maxWords:4}], quantity:100}))
+  {type:'string', key:'name', minWords:1, maxWords:2, everyWordIsCapitalized:true},
+  {type:'string', key:'lastname', minWords:1, maxWords:2, everyWordIsCapitalized:true}], quantity:100}))

@@ -1,16 +1,17 @@
-/*--------------------------------- OBJECTS --------------------------------------*/
-/*--------------------------------------------------------------------------------*/
+/**
+ * Objects
+ */
 
 let o = new Object();
 o.name = "jorge";
 console.log(o); // => {name: 'jorge'}
 
-let person = { hands: "two", foot: "two", hungry: false };
+let person1 = { hands: "two", foot: "two", hungry: false };
 let animal = { sentiments: true, hungry: true };
-let humans = Object.assign(animal, person);
+let humans = Object.assign(animal, person1);
 console.log(humans); // => { sentiments: true, hungry: false, hands: 'two', foot: 'two' }
 
-let onlyPerson = Object.assign({}, person);
+let onlyPerson = Object.assign({}, person1);
 console.log(onlyPerson); // => { hands: 'two', foot: 'two', hungry: false }
 
 let phonesPrices = {
@@ -43,8 +44,8 @@ let array = [
   ["b", 2],
   ["c", 3],
 ];
-const obj = Object.fromEntries(array);
-console.log(obj); // => { a:1, b:2, c: 3 }
+const obj2 = Object.fromEntries(array);
+console.log(obj2); // => { a:1, b:2, c: 3 }
 
 let subjects = {
   maths: 23,
@@ -71,8 +72,8 @@ let carrees = {
 };
 console.log(Object.values(carrees)); // => [ 'Systems', 'Bussiness', 'Software Engineering' ]
 
-const obj = { id: 1, name: "joder" };
-const newObj = { ...obj };
+const obj3 = { id: 1, name: "joder" };
+const newObj = { ...obj3 };
 console.log(newObj); // => { id: 1, name: 'joder' }
 
 const hoy = new Date();
@@ -107,17 +108,18 @@ console.log(who);
 var person2 = [];
 person2.name = "bla";
 var who = person2.name;
-console.log(person2);
-console.log(typeof person === "array");
+console.log(person2); // [name: 'bla']
+console.log(typeof person === "array"); // false
 
 /* Bracket notation */
 var person3 = [];
 person3.name = "sdf";
 person3[0] = "sdfxcv";
-console.log(person3);
+console.log(person3); // ['sdfxcv', name: 'sdf']
+
 
 //Array Destructuring for a variable declaration
-const [first, second] = ["hi", "babe"];
+const [first1, second1] = ["hi", "babe"];
 var [first, second] = [true, false];
 let [first, second] = [001, 002];
 
@@ -127,10 +129,10 @@ let { first, second } = { first: "sd", second: "vv" };
 var { first, second } = { first: true, second: false };
 
 // omit one
-const [a, , b] = [1, 2, 3];
+const [a1, , b1] = [1, 2, 3];
 
 // Combine with spread/rest operator
-const [c, ...d] = [1, 2, 3];
+const [c1, ...d1] = [1, 2, 3];
 
 // Advance deep arrays
 var [a, [b, [c, d]]] = [1, [2, [[[3, 4], 5], 6]]];
@@ -198,7 +200,6 @@ console.log(she);
 console.log(c(me, she));
 
 // Counting nesting objects
-
 var person = {
   name: "Ram",
   age: 27,

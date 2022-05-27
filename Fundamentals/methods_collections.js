@@ -72,9 +72,9 @@ let majorTo18 = [29, 19, 20, 33, 21];
 let anyIsMajor = majorTo18.every((currentValue) => currentValue > 18);
 console.log(anyIsMajor); // => true
 
-let arr = new Array(5);
-arr.fill(9);
-console.log(arr); // => [9, 9, 9, 9, 9]
+let arr1 = new Array(5);
+arr1.fill(9);
+console.log(arr1); // => [9, 9, 9, 9, 9]
 
 let business = [
   "electrodomestics",
@@ -176,21 +176,9 @@ for (const elem of iterator) {
 // 59
 // 85
 
-const arr = [1, "ass", false, {}];
-const spreadOperatorArr = [...arr];
+const arr2 = [1, "ass", false, {}];
+const spreadOperatorArr = [...arr2];
 console.log(spreadOperatorArr); // => [1, 'ass', false, {}]
 
-const arr = [null, null, {}];
-console.log(arr.some((x) => x)); // => true
-
-/**
- * THIS
- * For anonymous inline function expressions, arrow functions are clear winners,
- * due to their compact syntaxt and them not having <this> as an implicit parameter.
- *
- * For stand-alone named function declarations, arrow functions still benefit from
- * lexical <this>. But function declarations (which produce ordinary functions) have
- * nice syntax and early activation is also occasionally useful. If <this> doesn't
- * appear in the body of an ordinary function, there is no downside to using it as a
- * real function.
- */
+const arr3 = [null, null, {}];
+console.log(arr3.some((x) => x)); // => true

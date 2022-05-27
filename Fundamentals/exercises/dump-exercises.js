@@ -32,5 +32,3 @@ function isPalindrome(word){
     return log;
 }
 console.log(isPalindrome('HANNAh'))
-
-

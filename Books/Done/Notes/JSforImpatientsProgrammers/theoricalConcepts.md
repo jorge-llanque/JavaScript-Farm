@@ -1,4 +1,4 @@
-## CHAPTER FIVE
+## CHAPTER FIVE - CONTROL FLOW AND DATA FLOW
 ### 23. Control flow statements
 - The for-in loop visits all enumerable property keys of an object. When looping over an Array, it is rarely a good choice:
   * It visits property keys, not values.
@@ -85,3 +85,10 @@ try to memorize, please
 * Spreading and rest parameters use the same syntax (...) but they serve opposite purposes:
   * Rest parameters are used when defining functions or methods. They collect arguments into Arrays.
   * Spread arguments are used when calling functions or methods. They turn iterable objects into arguments.
+* THIS For anonymous inline function expressions, arrow functions are clear winners, due to their compact syntaxt and them not having <this> as an implicit parameter.
+* THIS For stand-alone named function declarations, arrow functions still benefit from lexical <this>. But function declarations (which produce ordinary functions) have nice syntax and early activation is also occasionally useful. If <this> doesn't appear in the body of an ordinary function, there is no downside to using it as a real function.
+
+## CHAPTER VII - COLLECTIONS
+### Synchronous iteration
+- Synchronous iteration is a protocol that connects two groups of entities in JS.
+  - **Data sources:** 
