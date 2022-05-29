@@ -47,6 +47,7 @@ console.log(names[2]); // => undefined
 let text = "HelloWorld";
 console.log(Array.from(text)); // => ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
 console.log(Array.from([1, 2, 3, 4, 5], (x) => x + x)); // => [2, 4, 6, 8, 10]
+console.log(Array.from({length:3, 0:'a',1:'b',2:'c'})) // => [ 'a', 'b', 'c' ]
 
 let listCharacters = ["a", "b", "d"];
 console.log(Array.isArray(listCharacters)); // => true

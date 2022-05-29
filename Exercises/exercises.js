@@ -1,14 +1,3 @@
-// espejo
-
-function espejo(string) {
-  let string_reverse = "";
-  for (let i = 1; i <= string.length; i++) {
-    string_reverse = string_reverse.concat(string[string.length - i]);
-  }
-  return string_reverse;
-}
-console.log(espejo("hello world"));
-
 function palabrasAlReves(string) {
   let arrString = string.split(" ");
   let nuevaPalabra = "";
