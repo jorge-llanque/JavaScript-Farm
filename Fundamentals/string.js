@@ -128,3 +128,12 @@ JSON.stringify(["a", ["b"]]);
 // => '["a",["b"]]'
 
 console.log(JSON.stringify({ first: "Jane", last: "Doe" }, null, 2));
+
+
+let acum = 0;
+let arr = [4,2,0,0,-1,-6];
+for(let i = 0; i < arr.length; i++){
+  if(i === arr.length -1) break
+  acum += arr[i] - arr[i + 1];
+}
+console.log(acum)

@@ -1,24 +1,3 @@
-function palabrasAlReves(string) {
-  let arrString = string.split(" ");
-  let nuevaPalabra = "";
-  for (let i = arrString.length - 1; i >= 0; i--) {
-    nuevaPalabra = nuevaPalabra.concat(" ", arrString[i]);
-  }
-  return nuevaPalabra.trim();
-}
-console.log(palabrasAlReves("I was in united states"));
-
-function ordenarAlfabeticamente(string) {
-  let newString = "";
-  let arr = string.split("");
-  arr.sort();
-  for (elem of arr) {
-    newString = newString.concat("", elem);
-  }
-  return newString;
-}
-console.log(ordenarAlfabeticamente("understand"));
-
 function dividirPorLaMitad(string) {
   let first = "";
   let second = "";

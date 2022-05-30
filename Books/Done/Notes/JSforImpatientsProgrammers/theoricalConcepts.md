@@ -230,3 +230,233 @@ try to memorize, please
   createRange(2,5);
   // => [2,3,4]
   ```
+
+- .map() and .flatMap() take a function callback as a parameter that controls how an input Array is translated to an output Array:
+  - With .map(), each input Array element is translated to exactly one output element. That is, callback returns a single value.
+  - With .flatMap(), each input Array element is translated to zero or more output elements. That is, callback returns an Array of values (it can also return non-Array values, but that is rare).
+  ```
+  const arr = ['a', 'b', 'c'];
+
+  arr.flatMap(x => [x,x])
+  // => ['a', 'a', 'b', 'b', 'c', 'c']
+
+  arr.flatMap(x => [x])
+  // => ['a', 'b', 'c']
+
+  arr.flatMap(x => [])
+  // => []
+  ```
+- The result of the Array method .map() always has the same length as the Array it is invoked on. That is, its callback can't skip Array elements it isn't interested in. The ability of .flatMap() to do so is useful in the next example.
+```
+const results = [
+  {value: 1},
+  {error: new Error('Illegal value: -5')},
+  {value: 6},
+];
+
+const values = results.flatMap(
+  result => result.value ? [result.value] : [];
+)
+// => [1,6]
+
+const errors = results.flatMap(
+  result => result.error ? [result.error] : [];
+)
+// => [new Error('Illegal value: -5')]
+```
+
+- Method .reduce() is a powerful tool for computing a "summary" of an Array arr. A summary can be any kind of value:
+  - A number. For example, the sum of all elements of arr.
+  - An array. For example, a copy of arr, where each element is twice the original element.
+  ```
+  // Let's look at an example of .reduce() in action
+  function addAll(arr) {
+    const startSum = 0;
+    const callback = (sum, elem) => sum + elem;
+    return arr.reduce(callback, startSum);
+  }
+  addAll([1,2,3])
+  // => 6
+
+  // Finding indices via .reduce()
+  const NOT_FOUND = -1;
+  function indexOf(arr, searchValue){
+    return arr.reduce(
+      (result, elem, index) => {
+        if(result !== NOT_FOUND){
+          return result;
+        }else if(elem === searchValue){
+          return index;
+        }else{
+          return NOT_FOUND
+        }
+      },
+      NOT_FOUND
+    )
+  }
+  indexOf(['a', 'b', 'c'], 1);
+  // => 'b'
+
+  // Doubling Array elements
+  function double(inArr){
+    return inArr.reduce(
+      (outArr, elem) => {
+        outArr.push(elem * 2);
+        return outArr;
+      },
+      []);
+  }
+  double([1,2,3]);
+  // => [2,4,6]
+  ```
+- By default, .sort() sorts string representation of the elements. These representations are compared via <. This operator compares lexicographically (the first characters are most significant).
+  ```
+  [200,3,10].sort((a,b) => a - b)
+  // => [3, 10, 200]
+
+  const arr = [{age:200}, {age:3}, {age:10}];
+  arr.sort((obj1, obj2) => obj1.age - obj2.age), [{age: 3}, {age:10}, {age:200}];
+  ```
+
+- USE CASES FOR TYPED ARRAYS
+  - The main uses cases for Typed Arrays, are:
+    - Processing binary data: managing image data, manipulating binary files, binary networks protocols, etc.
+    - INteracting with native APIs: Native APIs often receive and return data in binary format, which you could neither store nor manipulate well in pre-ES6 JavaScript. That meant that whenever you were communicating with such an API, data had to be converted from JavaScript to binary and back for every call. Typed Arrays eliminate this bottleneck. One example of communicating with native APIs is WebGL, for which Typed Arrays were initially created.
+- **The core classes: ArrayBUffer, Typed Arrays, DataView**
+- The Typed Array API stores binary data in instances of ArrayBuffer:
+  ```
+  const buf = new ArrayBuffer(4) // length in bytes
+  ```
+  An ArrayBuffer itself is a black box: If you want to access its data, you must wrap it in another object - a view object. Two kinds of view objects are available:
+  > Typed Arrays: let you access the data as an indexed sequence of elements that all have the same type. Examples include:
+    - Uint8Array: Elements are unsigned 8-bit integers. Unsigned means that their ranges start at zero.
+    - Int16Array: Elements are signed 16-bit integers. Signed means that they have a sign and can be negative, zero, or positive.
+    - Float32Array: Elements are 32-bit floating point numbers.
+    - DataViews: Let you interpret the data as various types (Uint8, Int16, Float32, etc) that you can read and write at any byte offset.
+- **Using Typed Arrays**
+  Typed Arrays are used much like normal Arrays with a few notable differences:
+  - Typed Arrays store their data in ArrayBuffers.
+  - All elements are initialized with zeros.
+  - All elements have the same type. Writing values to a Typed Array coerces them to that type. Reading values produces normal numbers or bigints.
+  - The length of a Typed Array is inmutable; it can't changed.
+  - Typed Arrays can't have holes.
+- **Creating Typed Arrays**
+  The following code shows three different ways of creating the same Typed Array:
+  ```
+  // Argument: Typed Array or Array-like object
+  const ta1 = new Uint8Array([0, 1, 2]);
+  
+  const ta2 = Uint8Array.of(0, 1, 2);
+
+  const ta3 = new Uint8Array(3); // length of Typed Array
+  ta3[0] = 0;
+  ta3[1] = 1;
+  ta3[2] = 2;
+  ```
+- **The wrapped ArrayBuffer**
+  ```
+  const typedArray = new Int16Array(2); // 2 elements
+  typedArray.buffer // 4 bytes
+  ```
+- **Getting and setting elements**
+  ```
+  const typedArray = new Int16Array(2);
+
+  // getting value
+  typedArray[1] // 0
+
+  // setting a value
+  typedArray[1] = 72
+  ```
+- **Using DataViews**
+  This is how DataViews are used:
+  ```
+  const dataView = new DataView(new ArrayBuffer(4));
+  dataView.getInt16(0) // 0
+  dataView.getUint8(0) // 0
+  dataView.setUint8(0, 5);
+  ```
+- Element types
+  |Element     | TypedArray       | Bytes   | Description             |      |
+  |:-----------|:-----------------|:--------|:------------------------|:-----|
+  | Int8       | Int8Array        |    1    | 8-bit signed integer    | ES6  |
+  | Uint8      | Uint8Array       |    1    | 8-bit unsigned integer  | ES6  |
+  | Uint8C     | Uint8ClampedArray|    1    | 8-bit unsigned integer  | ES6  |
+  |            |                  |         | (clamped conversion)    | ES6  |
+  | Int16      | Int16Array       |    2    | 16-bit signed integer   | ES6  |
+  | Uint16     | Uint16Array      |    2    | 16-bit unsigned integer | ES6  |
+  | Int32      | Int32Array       |    4    | 32-bit signed integer   | ES6  |
+  | Uint32     | Uint32Array      |    4    | 32-bit unsigned integer | ES6  |
+  | BigInt64   | BigInt64Array    |    8    | 64-bit signed integer   | ES2020|
+  | BigUint64  | BigUint64Array   |    8    | 64-bit unsigned integer | ES2020|
+  | Float32    | Float32Array     |    4    | 32-bit floating point   | ES6   |
+  | Float64    | Float64Array     |    8    | 64-bit floating point   | ES6   |
+
+These types show up in two locations:
+  - In Types Arrays, they specify the types of the elements. For example, all elements of a Int32Array have the type Int32. The element type is the only aspect of Typed Arrays that differs.
+  - In DataViews, they are the lenses through which they access their ArrayBuffers when you use methods such as .getInt32() and .setInt32().
+- The element type Uint8C is special: it is not supported by DataView and only exists to enable Uint8ClampedArray. This Typed Array is used by the canvas element (where it replaces CanvasPixelArray) and should otherwise be avoided. The only difference between Uint8C and Uint8 is how overflow and underflow are handled.
+- TypedArrays and Array Buffers use numbers and bigints to import and export values:
+  - The types BigInt64 and BigUint64 are handled via bigints. For example, setters accept bigints and getters return bigints.
+  - All other element types are handled via numbers.
+
+- **Handling overflow and underflow**
+  - The highest value plus one is converted to the lowest value (0 for unsigned integers).
+  - The lowest value minus one is converted to the highest value.
+  ```
+  function setAndGet(typedArray, value){
+    typedArray[0] = value;
+    return typedArray[0];
+  }
+
+  /* MODULO CONVERSION FOR UNSIGNED 8-bit integers*/
+  const uint8 = new Uint8Array(1);
+  
+  //Highest value of range
+  setAndGet(uint8, 255) // => 255
+
+  // Overflow
+  setAndGet(uint8, 256) // => 0
+
+  // Lowest value of range
+  setAndGet(uint8, 0)  // => 0
+
+  // Underflow
+  setAndGet(uint8, -1)  // => 255
+
+
+  /* MODULO CONVERSION FOR SIGNED 8-bit integers  */
+  const int8 = new Int8Array(1);
+
+  // Highest value of range
+  setAndGet(int8, 127)  // 127
+
+  //Overflow
+  setAndGet(int8, 128); // -128
+
+  // Lowest value of range
+  setAndGet(int8, -128) // -128
+
+  // Underflow
+  setAndGet(int8, -129) // 127
+  ```
+  - Clamped conversion is different
+    - All underflowing values are converted to the lowest value.
+    - All overflowing values are converted to the highest value.
+    ```
+    const uint8c = new Uint8ClampedArray(1);
+
+    // Highest value of range
+    setAndGet(uint8c, 255)  // 255
+
+    // Overflow
+    setAndGet(uint8c, 256)  // 255
+
+    // Lowest value of range
+    setAndGet(uint8c, 0)    // 0
+
+    // Underflow
+    setAndGet(uint8c, -1)   // 0
+    ```
+    32.2.2
+

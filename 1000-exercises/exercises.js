@@ -56,3 +56,44 @@ function espejoV1(string) {
     return newString;
   }
   console.log(ordenarAlfabeticamente(auxiliar()));
+
+/**
+ * 03. Ordenar una frase al reves
+ */
+ function auxiliarv2(){
+  const words = 'abcdefghijklmnopqrstuvwxyz';
+  let box = "";
+  let mainbox = ""
+  for(let index = 0; index < 1000; index++){
+    let iterator = Math.round(Math.random()*10-3)+3;
+    for (let index = 0; index < iterator; index++) {
+      box += words.at(Math.round(Math.random()*((words.length-1)-0)+0));
+    }
+    mainbox += box
+    box = "";
+    if(index === 1000) break;
+    mainbox += " "
+  }
+  return mainbox;
+}
+console.log(auxiliarv2())
+
+// v1
+ function fraseAlrevesV2(string) {
+  let arrString = string.split(" ");
+  let nuevaPalabra = "";
+  for (let i = arrString.length - 1; i >= 0; i--) {
+    nuevaPalabra = nuevaPalabra.concat(" ", arrString[i]);
+  }
+  return nuevaPalabra.trim();
+}
+console.log(fraseAlrevesV2("al reves"));
+
+// v2
+function fraseAlrevesV2(string){
+  return string.split(" ").reverse().join(" ")
+}
+
+/**
+ * 04. 
+ */
