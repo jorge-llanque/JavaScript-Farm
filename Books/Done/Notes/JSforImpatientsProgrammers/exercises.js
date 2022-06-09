@@ -98,3 +98,130 @@ function add(x,y){
     return x + y;
 }
 const add8 = add.bind(undefined, 8);
+
+
+/**
+ * Creating Maps
+ */
+
+const emptyMap = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+console.log(emptyMap);
+
+const map = new Map();
+map.set(1, 'one');
+map.set(2, 'two');
+map.set(3, 'three');
+console.log(map)
+console.log(map.size);
+
+for (const key of map.keys()) {
+    console.log(key);
+}
+
+
+// COUnting characters
+function countChars(chars){
+    const charCounts = new Map();
+    for (let ch of chars) {
+        ch = ch.toLowerCase();
+        const prevCount = charCounts.get(ch) ?? 0;
+        charCounts.set(ch, prevCount + 1);
+    }
+    return charCounts;
+}
+console.log(countChars('AaaaaBbbCcAb'));      
+
+
+/**
+ * USING SETS
+ */
+// Creating Sets
+const emptySet = new Set();
+console.log(emptySet.size);
+
+const set2 = new Set(['red', 'green', 'blue'])
+console.log(set2.size);
+
+const set3 = new Set();
+set3.add('jio');
+set3.add('jio2');
+set3.add('jio4');
+console.log(set3.size);
+
+// checks if an element is a member of a Set
+console.log(set3.has('red')); // => false
+
+// remove an element from a Set
+console.log(set3.delete('jio')); // => true
+
+// clearing a set
+console.log(set3.clear()); // => undefined
+
+/**
+ * DESTRUCTURING
+ */
+
+const arr2 = ['a', 'b','c'];
+const [x,y] = arr2;
+console.log(x,y)
+
+// Object-destructuring
+const address = {
+    street: 'Evergreen Terrace',
+    number: '742'
+};
+const {street: s, city: c} = address;
+console.log(s, c)
+
+// Primitive values destructuring
+const {length: l} = 'abc';
+console.log(l)
+
+// Array destructuring
+const {0:xx, 2:yy} = ['a', 'b', 'c'];
+console.log(xx, yy)
+
+// Rest Properties
+const obj2 = {a:1, b:2, c:3};
+const {a:propValue, ...remaining} = obj2;
+console.log(propValue)
+
+// Default values
+const {prop: p = 123} = {};
+console.log(p)
+
+const [x3=1, y3=2] = [];
+console.log(x3, y3)
+
+/**
+ * SYNCHRONOUS GENERATORS
+ */
+
+// Generator function declaration
+function* genFunc1(){/****/}
+
+// Generator function expression
+const genFunc2 = function* () {/****/};
+
+// Generator method definition in an object literal
+const obj3 = {
+    *generatorMethod(){
+        /****/
+    }
+}
+
+//Generator method definition in a class definition
+class MyClass {
+    *generatorMethod(){
+        //...
+    }
+}
+
+
+// Generator functions return iterables and fill them via yield
+function* genFunc4() {
+    yield 'a';
+    yield 'b';
+}
+const iterable = genFunc4();
+console.log(Array.from(iterable)) // => ['a', 'b']

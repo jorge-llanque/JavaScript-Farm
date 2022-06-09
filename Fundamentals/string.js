@@ -137,3 +137,35 @@ for(let i = 0; i < arr.length; i++){
   acum += arr[i] - arr[i + 1];
 }
 console.log(acum)
+
+
+
+
+
+
+
+
+
+function a(word){
+  let box = Array.from(word.toLowerCase().split(""),(v, k) => 'aeiouy'.includes(v) && k);
+  return box.filter(elem => Number.isInteger(elem))
+}
+
+console.log(a('abbyYFWei'));
+
+
+
+
+function ab(num){
+  let count = 0;
+  for(let i = 1; i<=num; i++){
+    console.log(i)
+    if(num % i == 0){
+      console.log('yes')
+      count++
+    }
+  }
+  return count
+}
+
+console.log(ab(4))

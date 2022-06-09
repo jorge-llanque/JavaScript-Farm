@@ -458,5 +458,12 @@ These types show up in two locations:
     // Underflow
     setAndGet(uint8c, -1)   // 0
     ```
-    32.2.2
+    
+- **35 Sets (Set)**
+- Before ES6, JS didn't have a data structure for sets. Instead, two workarounds were used:
+  - The keys of an object were used as a set of strings.
+  - Arrays were used as sets of arbitrary values. The downside is that checking membership (if an Array contains a value) is slower.
+- Since ES6, JavaScript has the data structure Set, which can contain arbitrary values and performs membership checks quickly.
+
+- Synchronous generators are special versions of function definitions and method definitions that always return synchronous iterables.
 
