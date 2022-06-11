@@ -83,11 +83,11 @@ console.log(padWord); // => yes!!!
  * assignment operator += because internaly JS Engine
  * optimize it.
  */
-let str = "";
+let str22 = "";
 str += "Say it";
 str += "one more";
 str += " time";
-console.log(str); // => Say it one more time
+console.log(str22); // => Say it one more time
 
 /**
  * These are three ways of converting a value to string
