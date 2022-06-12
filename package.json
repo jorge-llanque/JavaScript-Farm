@@ -1,0 +1,22 @@
+{
+  "name": "javascript-farm",
+  "version": "1.0.0",
+  "description": "Useful tools, concepts, notes about JS",
+  "main": "04-data-FROM-ELOQUENT.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorge-llanque/JavaScript-Farm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorge-llanque/JavaScript-Farm/issues"
+  },
+  "homepage": "https://github.com/jorge-llanque/JavaScript-Farm#readme",
+  "dependencies": {
+    "jest": "^28.1.1"
+  }
+}
