@@ -146,4 +146,49 @@ test('city database has Vienna', ()=>{
 
 test('city database has San Juan', ()=>{
     expect(isCity('San Juan')).toBeTruthy();
+}); 
+
+/**
+ * SCOPING
+ */
+
+// Applies to all tests in this file
+beforeEach(()=>{
+    return initializeCityDatabase();
 });
+
+test('city database has Vienna', ()=>{
+    expect(isCity('Vienna')).toBeTruthy();
+});
+
+test('city database has San Juan', ()=>{
+    expect(isCity('San Juan')).toBeTruthy();
+});
+
+// describe('matching cities to foods', ()=>{
+//     // Applies only to tests in this describe block
+//     beforeEach(()=>{
+//         return initializeFoodDatabase();
+//     });
+
+//     test('Vienna <3 veal', ()=>{
+//         expect(isValidCityFoodPair('Vienna', 'Wiener Schitzel')).toBe(true);
+//     });
+//     test('San Juan <3 plantains', ()=>{
+//         expect(isValidCityFoodPair('San Juan', 'Mofongo')).toBe(true);
+//     })
+// })
+
+/**
+ * USING A MOCK FUNCTION
+ */
+
+// const mockCallback = jest.fn(x => 42 + x);
+// forEach([0,1], mockCallback);
+
+// expect(mockCallback.mock.calls.length).toBe(2);
+
+
+/**
+ * Jest changed files
+ */

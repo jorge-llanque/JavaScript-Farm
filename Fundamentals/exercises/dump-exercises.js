@@ -13,7 +13,7 @@ function isOddOrEven(number){
     
     return log;
 }
-console.log(isOddOrEven(0))
+//console.log(isOddOrEven(0))
 
 // Calculate if a word is a palindrome
 function isPalindrome(word){
@@ -31,6 +31,20 @@ function isPalindrome(word){
     }
     return log;
 }
-console.log(isPalindrome('HANNAh'))
+//console.log(isPalindrome('HANNAh'))
 
 
+const convertToUpper = string => (typeof(string) === 'string') ? string.toUpperCase() : null
+
+
+const sumTwoSmallestNumbers = (numbers) => {
+    numbers.sort((a, b)=> a -b);
+    return numbers[0] + numbers[1]
+}
+
+module.exports = {
+    isOddOrEven,
+    isPalindrome,
+    convertToUpper,
+    sumTwoSmallestNumbers
+};
