@@ -1,9 +1,9 @@
 /**
  * With for-of we can iterate over [index, element] pairs of array
  */
-const arr = ['a', 'b', 'c'];
+const arr = ["a", "b", "c"];
 for (const [idx, elm] of arr.entries()) {
-    console.log(idx, elm)
+  console.log(idx, elm);
 }
 
 /**
@@ -11,14 +11,14 @@ for (const [idx, elm] of arr.entries()) {
  */
 
 // Function declaration
-function ordinary1(a,b,c){
-    //...
+function ordinary1(a, b, c) {
+  //...
 }
 
 // const plus anonymous function expression
-const ordinary2 = function(a,b,c){
-    //...
-}
+const ordinary2 = function (a, b, c) {
+  //...
+};
 
 /**
  * Specialized functions
@@ -26,24 +26,24 @@ const ordinary2 = function(a,b,c){
 
 // the purpose of an arrow function is to be a real function
 const arrow = () => {
-    return 123;
-}
+  return 123;
+};
 
 // The purpose of a method is to be a method
 const obj = {
-    myMethod(){
-        return 'abc';
-    }
-}
+  myMethod() {
+    return "abc";
+  },
+};
 
 // The purpose of a class is to be a constructor function
 class MyClass {
-    /****** */
+  /****** */
 }
 
 /**
  * Explaining why to use <this> with arrow function
- * 
+ *
  * In this code, we can observe two ways of handling <this>
  * - Dynamic this: we try to access the this of .someMethod() from an ordinary function. There
  *   it is shadowed by the function-s own this, which is undefined. Given that ordinary functions
@@ -54,83 +54,83 @@ class MyClass {
  */
 
 const jill = {
-    name: 'Jill',
-    someMethod(){
-        function ordinaryFunc(){
-            assert.throws(
-                () => this.name,
-                //TypeError: Cannot read properties of undefined
-            )
-        }
-        ordinaryFunc();
-
-        const arrowFunc = () => {
-            assert.equal(this.name, 'Jill');
-        };
-        arrowFunc();
+  name: "Jill",
+  someMethod() {
+    function ordinaryFunc() {
+      assert.throws(
+        () => this.name
+        //TypeError: Cannot read properties of undefined
+      );
     }
-}
-jill.someMethod();
+    ordinaryFunc();
 
+    const arrowFunc = () => {
+      assert.equal(this.name, "Jill");
+    };
+    arrowFunc();
+  },
+};
+jill.someMethod();
 
 /**
  * Methods of functions: call(), apply(), bind()
  */
 
 // The function method call() makes the implicit <this> explicit
-function func(x,y){
-    return [this, x, y]
+function func(x, y) {
+  return [this, x, y];
 }
-func.call('hi','everybody')
+func.call("hi", "everybody");
 
 // The function method .apply() specify a value for the implicit parameter <this>
-function func2(x,y){
-    return [this, x, y]
+function func2(x, y) {
+  return [this, x, y];
 }
-func2.apply(1,2)
+func2.apply(1, 2);
 
 // The function method .bind()
 // Using .bind() for real functions is somewhat unintuitive because we have to provide a value
 // for <this>. Given that it is undefined during function calls, it is usually set to undefined or null.
-// In the following example, we create a function that has a parameter, by binding the first paramter of 
+// In the following example, we create a function that has a parameter, by binding the first paramter of
 // add() to 8.
-function add(x,y){
-    return x + y;
+function add(x, y) {
+  return x + y;
 }
 const add8 = add.bind(undefined, 8);
-
 
 /**
  * Creating Maps
  */
 
-const emptyMap = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+const emptyMap = new Map([
+  [1, "one"],
+  [2, "two"],
+  [3, "three"],
+]);
 console.log(emptyMap);
 
 const map = new Map();
-map.set(1, 'one');
-map.set(2, 'two');
-map.set(3, 'three');
-console.log(map)
+map.set(1, "one");
+map.set(2, "two");
+map.set(3, "three");
+console.log(map);
 console.log(map.size);
 
 for (const key of map.keys()) {
-    console.log(key);
+  console.log(key);
 }
-
 
 // COUnting characters
-function countChars(chars){
-    const charCounts = new Map();
-    for (let ch of chars) {
-        ch = ch.toLowerCase();
-        const prevCount = charCounts.get(ch) ?? 0;
-        charCounts.set(ch, prevCount + 1);
-    }
-    return charCounts;
+function countChars(chars) {
+  const charCounts = new Map();
+  for (let ch of chars) {
+    ch = ch.toLowerCase();
+    const prevCount = charCounts.get(ch) ?? 0;
+    charCounts.set(ch, prevCount + 1);
+  }
+  return charCounts;
 }
-console.log(countChars('AaaaaBbbCcAb'));      
-
+console.log(countChars("AaaaaBbbCcAb"));
 
 /**
  * USING SETS
@@ -139,20 +139,20 @@ console.log(countChars('AaaaaBbbCcAb'));
 const emptySet = new Set();
 console.log(emptySet.size);
 
-const set2 = new Set(['red', 'green', 'blue'])
+const set2 = new Set(["red", "green", "blue"]);
 console.log(set2.size);
 
 const set3 = new Set();
-set3.add('jio');
-set3.add('jio2');
-set3.add('jio4');
+set3.add("jio");
+set3.add("jio2");
+set3.add("jio4");
 console.log(set3.size);
 
 // checks if an element is a member of a Set
-console.log(set3.has('red')); // => false
+console.log(set3.has("red")); // => false
 
 // remove an element from a Set
-console.log(set3.delete('jio')); // => true
+console.log(set3.delete("jio")); // => true
 
 // clearing a set
 console.log(set3.clear()); // => undefined
@@ -161,67 +161,103 @@ console.log(set3.clear()); // => undefined
  * DESTRUCTURING
  */
 
-const arr2 = ['a', 'b','c'];
-const [x,y] = arr2;
-console.log(x,y)
+const arr2 = ["a", "b", "c"];
+const [x, y] = arr2;
+console.log(x, y);
 
 // Object-destructuring
 const address = {
-    street: 'Evergreen Terrace',
-    number: '742'
+  street: "Evergreen Terrace",
+  number: "742",
 };
-const {street: s, city: c} = address;
-console.log(s, c)
+const { street: s, city: c } = address;
+console.log(s, c);
 
 // Primitive values destructuring
-const {length: l} = 'abc';
-console.log(l)
+const { length: l } = "abc";
+console.log(l);
 
 // Array destructuring
-const {0:xx, 2:yy} = ['a', 'b', 'c'];
-console.log(xx, yy)
+const { 0: xx, 2: yy } = ["a", "b", "c"];
+console.log(xx, yy);
 
 // Rest Properties
-const obj2 = {a:1, b:2, c:3};
-const {a:propValue, ...remaining} = obj2;
-console.log(propValue)
+const obj2 = { a: 1, b: 2, c: 3 };
+const { a: propValue, ...remaining } = obj2;
+console.log(propValue);
 
 // Default values
-const {prop: p = 123} = {};
-console.log(p)
+const { prop: p = 123 } = {};
+console.log(p);
 
-const [x3=1, y3=2] = [];
-console.log(x3, y3)
+const [x3 = 1, y3 = 2] = [];
+console.log(x3, y3);
 
 /**
  * SYNCHRONOUS GENERATORS
  */
 
 // Generator function declaration
-function* genFunc1(){/****/}
+function* genFunc1() {
+  /****/
+}
 
 // Generator function expression
-const genFunc2 = function* () {/****/};
+const genFunc2 = function* () {
+  /****/
+};
 
 // Generator method definition in an object literal
 const obj3 = {
-    *generatorMethod(){
-        /****/
-    }
-}
+  *generatorMethod() {
+    /****/
+  },
+};
 
 //Generator method definition in a class definition
 class MyClass {
-    *generatorMethod(){
-        //...
-    }
+  *generatorMethod() {
+    //...
+  }
 }
-
 
 // Generator functions return iterables and fill them via yield
 function* genFunc4() {
-    yield 'a';
-    yield 'b';
+  yield "a";
+  yield "b";
 }
 const iterable = genFunc4();
-console.log(Array.from(iterable)) // => ['a', 'b']
+console.log(Array.from(iterable)); // => ['a', 'b']
+
+/**
+ * Promises
+ */
+// Returning a non-promise value
+var callApi = setTimeout(() => {
+  console.log("200 Ok");
+}, 2000);
+
+Promise.resolve(callApi).then((x) => {
+  return x;
+});
+
+const myCustomError = new Error("An error happen");
+Promise.reject(myCustomError).catch((x) => {
+  console.log(x);
+});
+
+// Returning a promise
+var secondCallApi = setTimeout(() => {
+  console.log("Thanks for wait");
+}, 4000);
+var firstCallApi = setTimeout(() => {
+  console.log("Calling second callapi");
+}, 2000);
+
+Promise.resolve(firstCallApi)
+  .then((x) => {
+    return Promise.resolve(secondCallApi);
+  })
+  .then((x2) => {
+    x2;
+  });

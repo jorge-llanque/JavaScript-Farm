@@ -1,50 +1,56 @@
 // Calculate if a number is odd or even
 const message = {
-    INVALID_NUMBER: 'Is not a valid number',
-    ODD_NUMBER: 'Is Odd number',
-    EVEN_NUMBER: 'Is Even number'
-}
-function isOddOrEven(number){
-    let log = (typeof(number) !== 'number' || !Number.isInteger(number))  && message.INVALID_NUMBER;
-    
-    if(!log){
-        log = (number % 2 === 0) ? message.EVEN_NUMBER : message.ODD_NUMBER;
-    }
-    
-    return log;
+  INVALID_NUMBER: "Is not a valid number",
+  ODD_NUMBER: "Is Odd number",
+  EVEN_NUMBER: "Is Even number",
+};
+function isOddOrEven(number) {
+  let log =
+    (typeof number !== "number" || !Number.isInteger(number)) &&
+    message.INVALID_NUMBER;
+
+  if (!log) {
+    log = number % 2 === 0 ? message.EVEN_NUMBER : message.ODD_NUMBER;
+  }
+
+  return log;
 }
 //console.log(isOddOrEven(0))
 
 // Calculate if a word is a palindrome
-function isPalindrome(word){
-    let log = typeof(word) !== 'string' && 'is not a valid word';
+function isPalindrome(word) {
+  let log = typeof word !== "string" && "is not a valid word";
 
-    if(!log){
-        word = word.toUpperCase();
-        for (let i = 0; i <= word.length / 2; i++) {
-            log = 'is palindrome';
-            if(word[i] !== word[word.length - (i + 1)]){
-                log = 'is not a palindrome'
-                break;
-            }
-        }
+  if (!log) {
+    word = word.toUpperCase();
+    for (let i = 0; i <= word.length / 2; i++) {
+      log = "is palindrome";
+      if (word[i] !== word[word.length - (i + 1)]) {
+        log = "is not a palindrome";
+        break;
+      }
     }
-    return log;
+  }
+  return log;
 }
 //console.log(isPalindrome('HANNAh'))
 
-
-const convertToUpper = string => (typeof(string) === 'string') ? string.toUpperCase() : null
-
+const convertToUpper = (string) =>
+  typeof string === "string" ? string.toUpperCase() : null;
 
 const sumTwoSmallestNumbers = (numbers) => {
-    numbers.sort((a, b)=> a -b);
-    return numbers[0] + numbers[1]
-}
+  numbers.sort((a, b) => a - b);
+  return numbers[0] + numbers[1];
+};
+
+const last2EvenNUmbers = () => {
+  return null;
+};
 
 module.exports = {
-    isOddOrEven,
-    isPalindrome,
-    convertToUpper,
-    sumTwoSmallestNumbers
+  isOddOrEven,
+  isPalindrome,
+  convertToUpper,
+  sumTwoSmallestNumbers,
+  last2EvenNUmbers,
 };

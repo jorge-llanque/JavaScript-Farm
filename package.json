@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jorge-llanque/JavaScript-Farm#readme",
   "dependencies": {
-    "jest": "^28.1.1"
+    "jest": "^28.1.1",
+    "node-fetch": "^3.2.6"
   }
 }
