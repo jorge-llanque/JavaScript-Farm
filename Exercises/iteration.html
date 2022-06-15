@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Enter start number</label>
+    <input id="start" type="string"/>
+    <br/>
+    <label>Enter end number</label>
+    <input id="end" type="string"/>
+    <br/>
+    
+    <br/>
+    <button id="startSecuence">Show data</button>
+
+    <div id="setPagination" hidden>
+        <label>Items per screen</label>
+        <input id="maxItems" type="string"/>
+    </div>
+
+    <script>
+        let input1 = document.getElementById('start');
+        let input2 = document.getElementById('end');
+        let input3 = document.getElementById('setPagination');
+        let startButton = document.getElementById('startSecuence');
+        
+
+        startButton.addEventListener('click', showNumbers)
+
+        function showNumbers(){
+            input3.hidden = false;
+            if(!input3.value) return null;
+            let inputArr = [Number(input1.value), Number(input2.value)];
+            let minValue = Math.min(...inputArr);
+            let maxValue = Math.max(...inputArr);
+            
+            do {
+                console.log(minValue++)
+            } while (minValue < maxValue || minValue == maxValue);
+
+        }
+
+    </script>
+</body>
+</html>
+<!-- Solicitar al usuario ingresar un inicio y fin y mostrar los números comprendidos entre ellos. Si el inicio es mayor al fin se deben realizar un intercambio de variables. Solicitar al usuario la cantidad de números que desea ver por pantalla mientras se recorre la secuencia por cada avance de secuencia preguntar al usuario si desea continuar o finalizar. También indicar la página actual y total de páginas a recorrer. -->

@@ -47,6 +47,61 @@ const last2EvenNUmbers = () => {
   return null;
 };
 
+/**
+ * STRINGS
+ * typeof
+ * [] vs at()
+ * length
+ * concat
+ * includes
+ * endsWith
+ * indexOf
+ * lastIndexOf
+ */
+
+console.log(typeof "as"); // string
+console.log(typeof "123"); // string
+console.log(typeof "undefined"); // string
+console.log(typeof "null"); // string
+console.log(typeof "false"); // string
+console.log(typeof []); // object
+console.log(typeof {}); // object
+console.log(typeof 0); // number
+console.log(typeof true); // boolean
+console.log(typeof 234.3232); // number
+console.log(typeof undefined); // undefined
+console.log(typeof null); // object
+
+let text = "asavevevewfsfsf";
+console.log(text[3]); // v
+console.log(text[-3]); // undefined
+console.log(text.at(3)); // v
+console.log(text.at(-3)); // f
+console.log(text.length); // 15
+console.log(text.concat("ZZZ")); // asavevevewfsfsfZZZ
+console.log(text.concat("A", "B", "C")); //asavevevewfsfsfABC
+console.log(text.concat(["X", "Y", "Z"])); // asavevevewfsfsfX,Y,Z
+console.log(text.concat([12, 123, 45, 5])); // asavevevewfsfsf12,123,45,5
+console.log(text.concat(false)); // asavevevewfsfsffalse
+
+let text2 = "dfdsssfgsggsf";
+console.log(text2.includes("f")); // true
+console.log(!text2.includes("f")); // false
+
+console.log(text2.endsWith("f")); // true
+console.log(!text2.endsWith("f")); // false
+console.log(text2.indexOf("s")); // 3
+console.log(text2.indexOf("sss")); // 3
+console.log(text2.indexOf(undefined)); // -1
+
+let text3 = "hi hello";
+console.log(text3.repeat(3)); // hi hellohi hellohi hello
+console.log(text3); // hi hello
+
+let text4 = "hello,df..sfw:;bye,,";
+console.log(text4.replace(",", "|"));
+text4.replace();
+
 module.exports = {
   isOddOrEven,
   isPalindrome,

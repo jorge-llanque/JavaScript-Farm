@@ -387,3 +387,113 @@ Promise.all(promises)
     }
   }
   ```
+
+- **ASYNC FUNCTIONS: THE BASICS**
+  ```javascript
+    async function fetchJsonAsync(url){
+      try{
+        const request = await fetch(url);   // async
+        const text = await request.text();  // async
+        return JSON.parse(text);            // sync
+      }catch(error){
+        assert.fail(error);
+      }
+    }
+    /*The previous is equivalent to the following code*/
+    function fetchJsonPromises(url){
+      return fetch(url)                     // async
+        .then(request => request.text())    // async
+        .then(text => JSON.parse(text))     // sync
+        .catch(error => {
+          assert.fail(error);
+        })
+    }
+  ```
+
+  - Each async function always returns a Promise
+  - if we don't explicitly return anything, undefined is returned for us
+
+```javascript
+// the following code can't be executed
+async function downloadContent(urls){
+  return urls.map((url) => {
+    return await httpGet(url);  // SyntaxError!
+  });
+}
+// The reason is that normal arrow functions don't allow await inside their bodies.
+// Ok, let's try an async arrow function then:
+async function downloadContent(urls){
+  return urls.map(async(url) => {
+    return await httpGet(url);
+  });
+}
+
+//Alas, this doesn't work either: Now .map() returns an Array with Promises, not an Array with values.
+// One possible solution is to use Promise.all() to unwrap all Promises
+async function downloadContent(urls){
+  const promiseArray = urls.map(async (url) => {
+    return await httpGet(url);
+  });
+  return await Promise.all(promiseArray);
+}
+ // It fixed it. We are unwrapping a Promise via await, only to re-wrap it immediately via return. If we omit await, we don't even need an async arrow function:
+async function downloadContent(urls){
+  const promiseArray = urls.map(
+    url => httpGet(url));
+  return await Promise.all(promiseArray);
+}
+// For the same reason, we can also omit await
+```
+  
+- Concurrency and await
+  ```javascript
+  function delay(ms){
+    return new Promise((resolve, _reject) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  async function paused(id){
+    console.log('start' + id);
+    await delay(10); // paused
+    console.log('END' + id);
+    return id;
+  }
+  ```
+  - await: running asynchronous functions sequentially
+  ```javascript
+  async function sequentialAwait(){
+    const result1 = await paused('first');
+    assert.equal(result1, 'first');
+
+    const result2 = await paused('second');
+    assert.equal(result2, 'second');
+  }
+
+  // await: running asynchronous functions concurrently
+  async function concurrentPromiseAll(){
+    const result = await Promise.all([
+      paused('first'), paused('second')
+    ]);
+    assert.deepEqual(result, ['first', 'second']);
+  }
+  ```
+  - We don't need await if we "fire and forget"
+    - Await is not required when working with a Promise-based function; we only need it if we want to pause and wait until the returned Promise is settled. If we only want to start an asynchronous operation, then we don't need it:
+    ```javascript
+    async function asyncFun(){
+      const writer = openFile('someFile.txt');
+      writer.write('hello');  // don't wait
+      writer.write('world');  // don't wait
+      await writer.close();   // wait for file to close
+    }
+    // In this code, we don't await .write() because we don't care when it is finished. We do, however, want to wait until .close() is done.
+    ```
+
+  - It can make sense to await and ignore the result
+    - It can occasionally make sense to use await, even if we ignore its result
+      ```javascript
+      await longRunningAsyncOperation();
+      console.log('Done!');
+
+      // Here, we are using await to join a long-running asynchronous operation. That ensures that the logging really happens after that operation is done.
+      ```
