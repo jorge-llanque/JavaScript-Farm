@@ -497,3 +497,39 @@ async function downloadContent(urls){
 
       // Here, we are using await to join a long-running asynchronous operation. That ensures that the logging really happens after that operation is done.
       ```
+
+## Protocol: async iteration
+  SYNCHRONOUS ITERATION
+  - An **Iterable** is a data structure whose contents can be accessed via iteration. It is a factory for iterators.
+  - An **Iterator** is a factory for iteration results that we retrieve by calling the method .next().
+  - Each **IterationResult** contains the iterated .value and a boolean .done that is true after the last element and false before.
+  
+ASYNCHRONOUS ITERATION
+  - The .value could contain a `Promise<T>`
+  - .next() could return `Promise<IteratorResult<T>>`
+
+USING ASYNC ITERATION DIRECTLY
+```javascript
+const asyncIterable = syncToAsyncIterable(['a','b']);
+const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+
+// Call .next() until .done is true:
+asyncIterator.next()
+  .then(iteratorResult => {
+    assert.deepEqual(
+      iteratorResult,
+      {value: 'a', done: false});
+      return asyncIterator.next();
+  })
+  .then(iteratorResult => {
+    assert.deepEqual(
+      iteratorResult,
+      {value: 'b', done: false});
+      return asyncIterator.next();
+  })
+  .then(iteratorResult => {
+    assert.deepEqual(
+      iteratorResult,
+      {value: undefined, done: true});
+  });
+```

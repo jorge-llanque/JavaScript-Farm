@@ -261,3 +261,12 @@ Promise.resolve(firstCallApi)
   .then((x2) => {
     x2;
   });
+
+// CHECKING FOR WHITESPACE:
+console.log(/^\p{White_Space}+$/u.test("\t \n\r"));
+// CHECKING FOR GREEK LETTERS
+console.log(/^\p{Script=Greek}+$/u.test("μετά"));
+// DELETING ANY LETTERS:
+console.log("1π2ü3é4".replace(/\p{Letter}/gu, ""));
+// DELETING LOWERCASE LETTERS:
+console.log("AcBbBdCCddkw".replace(/\p{Lowercase_Letter}/gu, ""));
