@@ -102,6 +102,49 @@ let text4 = "hello,df..sfw:;bye,,";
 console.log(text4.replace(",", "|"));
 text4.replace();
 
+
+// Convert to String
+console.log(String('sfe'));
+
+// Validate if contains a value
+const val = 'asdfe323fs_-__2f2';
+console.log(val.includes('?', 5));  // => false
+
+const val2 = 'sad we a vds';
+console.log(val2.endsWith('we')) // => false
+console.log(val2.indexOf('we',9)) // => -1
+console.log(val2.search('we')) // => 4
+console.log(val2.slice()) // => sad we a vds
+console.log(val2.split()) // => ['sad we a vds']
+
+// string to number and reverse
+console.log(parseInt('123',10));
+console.log(String(234))
+
+//string to array and reverse
+console.log('awef-+=-)0_+\\'.split());
+console.log(String([1,34,'23'])); // 1,34,23
+
+// string to object and reverse
+console.log(JSON.parse('{"fa":23, "fe":90}'));
+console.log(JSON.stringify({as:23,wd:34})); // {"as":23, "wd":34}
+
+// string to boolean and reverse
+console.log(typeof JSON.parse('true')) // boolean
+console.log(String(false))
+
+/**
+ * ARRAYS
+ */
+
+//
+console.log(Array.from('woifw0239)9(+_=-"|""'));
+console.log(Array.from([2,4,6,24,5,3,2], (_, k)=> {
+  if(k %2===0) return k
+}))
+
+
+
 module.exports = {
   isOddOrEven,
   isPalindrome,
