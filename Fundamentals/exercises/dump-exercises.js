@@ -145,6 +145,20 @@ console.log(Array.from([2,4,6,24,5,3,2], (_, k)=> {
 
 
 
+
+/**
+ * otros
+ */
+
+const frase = "asd wer we 2 23";
+console.log(frase.replaceAll(" ","").length)
+
+
+
+
+
+
+
 module.exports = {
   isOddOrEven,
   isPalindrome,
