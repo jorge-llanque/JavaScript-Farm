@@ -77,3 +77,69 @@ const b = [
 let c = b.filter((data) => !a.includes(data.id));
 
 console.log(c);
+
+// Exercises converting values to booleans
+Boolean(undefined); // => false
+Boolean(null); // => false
+Boolean(0); // => false
+Boolean(''); // => false
+Boolean([]); // => true
+Boolean({}); // => true
+
+var a_2 = 25;
+a_2 ||= 23;
+console.log(a_2);
+
+var a_3 = null;
+a_3 ??= 200;
+console.log(a_3);
+
+var a_4 = 2;
+a_4 &&= 1;
+console.log(a_4);
+
+/***
+ * ARRAY METHODS
+ * - splice - remove elements from an array
+ * - slice - copy elements from an array
+ * - map - transform elements in an array
+ * - filter - filter elements in an array
+ * - reduce - reduce elements in an array
+ * - find
+ * - findIndex
+ * - fill
+ * - some
+ * - every
+ * - forEach
+ * - sort
+ * - reverse
+ * - join
+ * - push
+ * - pop
+ * - unshift
+ * - shift
+ * - indexOf
+ * - lastIndexOf
+ * - includes
+ * - concat
+ */
+var booksColor = [{ name: "Red", price: 10 }, { name: "Blue", price: 20 }];
+var boooksPlusAuthor = booksColor.map((book) => {
+  return {
+    ...book,
+    author: "John Doe",
+  };
+});
+var CheapBooks = booksColor.filter((book) => book.price < 15);
+console.log(CheapBooks);
+
+/***
+ * SPECIALS ITERATORS AND GENERATORS
+ * - for...of
+ * - Array.from
+ * - Array.of
+ * - Array.prototype.entries
+ * - Array.prototype.keys
+ * - Array.prototype.values
+ * - 
+ */
