@@ -18,6 +18,41 @@ console.log(civic.toString())
 ```
 
 **The Module Pattern**
+Modules are an integral piece of any robust application's architecture and typically help in keeping the units of code for a project both cleanly separated and organized.
+```javascript
+var basketModule = (function(){
+  //privates
+  var basket = [];
+  function doSomethingPrivate(){
+    //...
+  }
+  function doSomethingElsePrivate(){
+    //...
+  }
+
+  // Return an object exposed to the public
+  return {
+    // Add items to our basket
+    addItem: function(values){
+      basket.push(values);
+    },
+    // Get the count of items in the basket
+    getItemCount: function(){
+      return basket.length;
+    },
+    // Public alias to a private function
+    doSomething: doSomethingPrivate,
+    // Get the total value of items in the basket
+    getTotal: function(){
+      var itemCound = this.getItemCount(), total = 0;
+      while (itemCount--){
+        total += basket[itemCount].price;
+      }
+      return total;
+    }
+  };
+}())
+```
 
 **The Revealing Module Pattern**
 
