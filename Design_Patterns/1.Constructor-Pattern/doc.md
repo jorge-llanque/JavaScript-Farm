@@ -150,6 +150,77 @@ console.log(singleA.getRandomNumber() === singleB.getRandomNumber()) // true
 ```
 
 **The Observer Pattern**
+The Observer is a design pattern in which an object maintains a list of objects depending
+on it (observers), automatically notifying them of any changes to state.
+#When a subject needs to notify observers about something interesting happening, it broadcasts a
+notification to the observers (which can include specific data related to the topic of the notification).
+- definition: One or more observers are interested in the state of a subject and register their interest with the subject by attaching themselves. When something changes in our subject that the observer may be interested in, a notify message is sent which calls the update method in each observer. When the observer is no longer interested in the subject's state, they can simply detach themselves.
+  - Subject: Maintains a list of observers, facilitates adding or removing observers.
+  - Observer: Provides an update interface for objects that need to be notified of a Subject's changes of state.
+  - ConcreteSubject: Broadcasts notifications to Observers on changes of state, stores the state of ConcreteObserver.
+  - ConcreteObserver: Stores a reference to the ConcreteSubject, implements an update interface for the Observer to ensure state is consistent with the Subject's.
+
+```javascript
+function ObserverList(){
+  this.observerList = [];
+}
+
+ObserverList.prototype.Add = function(obj){
+  return this.observerList.push(obj);
+}
+ObserverList.prototype.Empty = function(){
+  this.observerList - [];
+}
+ObserverList.prototype.Count = function(){
+  return this.observerList.length;
+}
+ObserverList.prototype.Get = function(index){
+  if(index > -1 && index < this.observerList.length){
+    return this.observerList[index];
+  }
+}
+ObserverList.prototype.Insert = function(obj, index){
+  var pointer = -1;
+  if(index === 0){
+    this.observerList.unshift(obj);
+    pointer = index;
+  }else if(index === this.observerList.length){
+    this.observerList.push(obj);
+    pointer = index;
+  }
+  return pointer;
+}
+ObserverList.prototype.IndexOf = function(obj, startIndex){
+  var i = startIndex, pointer = -1;
+  while(i < this.observerList.length){
+    if(this.observerList[i] === obj){
+      pointer = i;
+    }
+    i++;
+  }
+
+  while(i < this.observerList.length){
+    if(this.observerList[i] === obj){
+      pointer = i;
+    }
+    i++;
+  }
+  return pointer;
+};
+ObserverList.prototype.RemoveIndexAt() = function(index){
+  if(index === 0){
+    this.observerList.shift();
+  }else if(index === this.observerList.length -1){
+    this.observerList.pop();
+  }
+};
+// Extend an object with an extension
+function extend(extension, obj){
+  for(var key in extension){
+    obj[key] = extension[key];
+  }
+}
+```
 
 **The Mediator Pattern**
 
