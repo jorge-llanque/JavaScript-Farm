@@ -1,6 +1,6 @@
 ## Design Patterns
-**Constructors with Prototypes**
 
+**Constructors with Prototypes**
 Functions in JavaScript have a property called a prototype. When we call a JavaScript constructor to create an object, all the properties of the constructor's prototype are then made available to the new object. In this fashion, multiple Car Object can be created that access the same prototype.
 ```javascript
 function Car(model, year, miles){
@@ -149,7 +149,7 @@ var singleB = mySingleton.getInstance();
 console.log(singleA.getRandomNumber() === singleB.getRandomNumber()) // true
 ```
 
-**The Observer Pattern**
+**The Observer Pattern and Publish/Subscribe Pattern**
 The Observer is a design pattern in which an object maintains a list of objects depending
 on it (observers), automatically notifying them of any changes to state.
 When a subject needs to notify observers about something interesting happening, it broadcasts a
