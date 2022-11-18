@@ -9,7 +9,7 @@
 
 
 function App(){
-  const data = { ... };
+  const data = { /*...*/ };
 
   return (
     <div>
