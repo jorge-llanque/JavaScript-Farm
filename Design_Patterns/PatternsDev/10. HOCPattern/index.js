@@ -1,7 +1,7 @@
-/**
+  /**
  * HOC Pattern
  * - Pass reusable logic down as props to components throughout your application.
- * - Within our application, we often wnat to use the same logic in multiple components, this logic can
+ * - Within our application, we often want to use the same logic in multiple components, this logic can
  *   include applying a certain styling to components, requiring authorization, or adding a global state.
  * - One way of being able to reuse the same logic in multiple components is by using the higher order
  *   component pattern. This pattern allows us to reuse component logic throughout our application.
@@ -55,7 +55,7 @@ function DogImages(props){
   ))
 }
 
-withLoading(DogImages, '//dog.ceo/api/breed/labrador/images/random/10');
+withLoader(DogImages, '//dog.ceo/api/breed/labrador/images/random/10');
 
 
 /**
