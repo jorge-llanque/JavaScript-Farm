@@ -3,10 +3,10 @@
  */
 
 let o = new Object();
-o.name = "jorge";
+o.name = 'jorge';
 console.log(o); // => {name: 'jorge'}
 
-let person1 = { hands: "two", foot: "two", hungry: false };
+let person1 = { hands: 'two', foot: 'two', hungry: false };
 let animal = { sentiments: true, hungry: true };
 let humans = Object.assign(animal, person1);
 console.log(humans); // => { sentiments: true, hungry: false, hands: 'two', foot: 'two' }
@@ -40,9 +40,9 @@ confidentialInfo.dead = 0;
 console.log(confidentialInfo.dead); // => 104020000
 
 let array = [
-  ["a", 1],
-  ["b", 2],
-  ["c", 3],
+  ['a', 1],
+  ['b', 2],
+  ['c', 3],
 ];
 const obj2 = Object.fromEntries(array);
 console.log(obj2); // => { a:1, b:2, c: 3 }
@@ -65,14 +65,14 @@ let ages = {
 let arrayKeys = Object.keys(ages);
 console.log(arrayKeys); // => [ 'Michael', 'Mary', 'George', 'Mathew' ]
 
-let carrees = {
-  Andy: "Systems",
-  Jane: "Bussiness",
-  George: "Software Engineering",
+let careers = {
+  Andy: 'Systems',
+  Jane: 'Business',
+  George: 'Software Engineering',
 };
-console.log(Object.values(carrees)); // => [ 'Systems', 'Bussiness', 'Software Engineering' ]
+console.log(Object.values(careers)); // => [ 'Systems', 'Business', 'Software Engineering' ]
 
-const obj3 = { id: 1, name: "joder" };
+const obj3 = { id: 1, name: 'joder' };
 const newObj = { ...obj3 };
 console.log(newObj); // => { id: 1, name: 'joder' }
 
@@ -90,42 +90,41 @@ let mes = hoy.getMonth() + 1;
 console.log(mes); // => 2
 
 var miAuto = new Object();
-miAuto.marca = "Ford";
-miAuto.modelo = "Mustang";
+miAuto.marca = 'Ford';
+miAuto.modelo = 'Mustang';
 miAuto.anio = 1969;
 console.log(miAuto); // => { marca: 'Ford', modelo: 'Mustang', anio: 1969 }
 
 /* Access with dots*/
 var person = {};
-person.name = "Mrs. White";
+person.name = 'Mrs. White';
 
 var who = person.name;
 
-person.name = "Mr. White";
+person.name = 'Mr. White';
 console.log(who);
 
 /* Arrays */
 var person2 = [];
-person2.name = "bla";
+person2.name = 'bla';
 var who = person2.name;
 console.log(person2); // [name: 'bla']
-console.log(typeof person === "array"); // false
+console.log(typeof person === 'array'); // false
 
 /* Bracket notation */
 var person3 = [];
-person3.name = "sdf";
-person3[0] = "sdfxcv";
+person3.name = 'sdf';
+person3[0] = 'sdfxcv';
 console.log(person3); // ['sdfxcv', name: 'sdf']
 
-
 //Array Destructuring for a variable declaration
-const [first1, second1] = ["hi", "babe"];
+const [first1, second1] = ['hi', 'babe'];
 var [first, second] = [true, false];
 let [first, second] = [001, 002];
 
 // Object Destructuring for a variable declaration
 const { first, second } = { first: 1, second: 4 };
-let { first, second } = { first: "sd", second: "vv" };
+let { first, second } = { first: 'sd', second: 'vv' };
 var { first, second } = { first: true, second: false };
 
 // omit one
@@ -160,22 +159,22 @@ var foo = function ({
   console.log(x, ...b);
 };
 foo({
-  prop: "Hello",
+  prop: 'Hello',
   prop2: {
     prop2: {
-      nested: ["a", "b", "c"],
+      nested: ['a', 'b', 'c'],
     },
   },
 });
 
 // Computed property names
-const name = "fieldName";
+const name = 'fieldName';
 const computedObject = { [name]: name };
 const { [name]: nameValue } = computedObject;
 console.log(nameValue);
 
 // Woops
-var users = [{ user: "name1" }, { user: "name2" }, { user: "name3" }];
+var users = [{ user: 'name1' }, { user: 'name2' }, { user: 'name3' }];
 
 var names = users.map(({ user: fuckname }) => fuckname);
 // OR users.map(({user}) => user);
@@ -183,7 +182,7 @@ console.log(names);
 
 const a = {};
 const b = a;
-b.name = "li";
+b.name = 'li';
 console.log(b, a); // => {name: 'hi'} {name: 'hi'}
 
 /* EXERCISES */
@@ -191,9 +190,7 @@ const { me, she, c } = {
   me: 201,
   she: 102,
   c: function (a, b) {
-    return a.toString().split("").reverse().join("") === b.toString()
-      ? "Palindrome!!!!!"
-      : "nope";
+    return a.toString().split('').reverse().join('') === b.toString() ? 'Palindrome!!!!!' : 'nope';
   },
 };
 console.log(she);
@@ -201,16 +198,16 @@ console.log(c(me, she));
 
 // Counting nesting objects
 var person = {
-  name: "Ram",
+  name: 'Ram',
   age: 27,
-  children: ["as", "we"],
+  children: ['as', 'we'],
   vehicles: {
-    car: "limousine",
-    bike: "ktm-duke",
+    car: 'limousine',
+    bike: 'ktm-duke',
     airlines: {
-      lufthansa: "Air123",
-      Brithis_Airways: "Brt707",
-      year: ["2021", "2022"],
+      lufthansa: 'Air123',
+      Brithis_Airways: 'Brt707',
+      year: ['2021', '2022'],
     },
   },
 };
@@ -218,7 +215,7 @@ var person = {
 let count = 0;
 function nestedObjects(person) {
   for (let obj of Object.keys(person)) {
-    if (typeof person[obj] === "object") {
+    if (typeof person[obj] === 'object') {
       count++;
       nestedObjects(person[obj]);
     }
@@ -234,7 +231,7 @@ console.log(nestedObjects(person));
 
 const obj = {
   if: 234,
-  const: "hi",
+  const: 'hi',
 };
 
 /**
@@ -249,7 +246,7 @@ const obj = {
  * .call() makes the normally implicit paramter this explicit: When invoking a function via .call(),
  * the first parameter is this, followed by the regular (explicit) function parameters.
  */
-obj.someMethod.call(obj, "a", "b");
+obj.someMethod.call(obj, 'a', 'b');
 
 /**
  * Methods
@@ -257,4 +254,4 @@ obj.someMethod.call(obj, "a", "b");
  * Each invocation of .bind() creates a new function. That's why we need to store the result
  * somewhere if we want to remove it later on.
  */
-obj.someMethod.bind(obj, "hello");
+obj.someMethod.bind(obj, 'hello');
